@@ -1,28 +1,33 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Login page</title>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
 <body>
-    <h1>Login page</h1>
-    <p>Example user: john/asdf</p>
-    <p>Example admin: admin/asdf</p>
+<div class="container row">
+    <div class="col">
+            <span>
+                <p>ASTRO</p>
+                <p>PLATFORM</p>
+            </span>
+    </div>
+    <div class="col">
+        <p th:if="${loginError}" class="error">Wrong user or password</p>
 
-    <p th:if="${loginError}" class="error">Wrong user or password</p>
+        <form th:action="@{/login}" method="post">
+            <input id="username" name="username" placeholder="Username" type="text" autofocus="autofocus"/>
+            <br/>
+            <input id="password" name="password" placeholder="Password" type="password"/>
+            <br/>
+            <input type="submit" value="Log in"/>
+        </form>
 
-    <form th:action="@{/login}" method="post">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text" autofocus="autofocus"/>
-        <br/>
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password"/>
-        <br/>
-        <input type="submit" value="Log in"/>
-    </form>
-
-    <p>
-        <a href="/" th:href="@{/index}">Back to home page</a>
-    </p>
+        <p>
+            <a href="/" th:href="@{/index}">Back to home page</a>
+        </p>
+    </div>
+</div>
 </body>
 </html>

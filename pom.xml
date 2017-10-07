@@ -21,7 +21,9 @@
 	<modules>
 		<module>spring-security-with-boot</module>
 		<module>spring-security-boot-app</module>
-	</modules>
+        <module>spring-security-boot-app-tests-spock</module>
+        <module>spring-security-boot-app-test-cucumber</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

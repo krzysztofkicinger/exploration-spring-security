@@ -126,6 +126,42 @@ POJO's that make up application can be tested without Spring or any other contai
     * DEFINED_PORT - loads ``EmbeddedWebApplicationContext`` and provides a real servlet environment listening or defined port (application.properties)
     * NONE - loads ApplicationContext without any Servlet environment
     
+Test configuration (previousle defined in the @ContextConfiguration) is automatically done:
+* Looks for **@SpringBootApplication** and **@SpringBootConfiguration** from the package that contains the test
+* If customization is required then use a nested **@TestConfiguration** class (will be used in addition to normal configuration)
+
+## Working with random ports
+
+Tests that are annotated with **@SpringBootTest(webEnvironment = WebEnvironemnt.RANDOM_PORT)** run on random port. To execute requests to the application correctly then you can use one of the following scenarios:
+
+* Inject ``TestRestTemplate`` using @Autowired annotation - resolves relative links to the running server
+* Use **@LocalServerPort** annotation to inject the actual port used in the tests
+
+## Mocking and Spying Bean
+
+**@MockBean** - defines Mockito's mock for a bean inside the ApplicationContext, this can be used to create new beans or replace existing ones
+* Mock beans are automatically reset after each test method
+* Mock's behavior should be defined in the specific test method
+* To use mocks feature in different arrangement use **@TestExecutionListeners(MockitoTestExecutionListener.class)**
+
+
+## Autoconfigured tests
+
+// TODO
+
+## Autoconfigured JSON tests
+
+**@JsonTest** - tests JSON serialization and deserialization, autoconfigures:
+* Jackson's ``ObjectMapper``
+* any @JsonComponent beans
+* any Jackson's ``Modules``
+* ``Gson`` if happen to be used instead of, or as well as, Jackson
+
+How to assert JSONs?
+* Spring Boot includes AssertJ based helpers that works with JSONassert and JsonPath libraries
+* ``JacksonTester, GsonTester, BasicJsonTester`` - Jackson, Gson, String (respectively)
+
+
 
 
 ## References
