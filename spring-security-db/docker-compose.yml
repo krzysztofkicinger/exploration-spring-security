@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+
+  spring-security-db:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
