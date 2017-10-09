@@ -1,5 +1,6 @@
 package com.kicinger.spring.security.boot.app.controller;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class UserRestControllerTest {
 
     @Autowired private TestRestTemplate restTemplate;
 
+    @Ignore
     @Test
     @WithMockUser(username = "user", roles = "USER")
     public void whenUserAccessItsDataAndIsAuthorizedShouldGetThem() throws Exception {

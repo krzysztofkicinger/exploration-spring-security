@@ -8,10 +8,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-security-boot-app-tests</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>spring-security-boot-app-tests-spock</artifactId>
+    <packaging>pom</packaging>
 
-    <name>spring-security-boot-app-tests</name>
+    <name>spring-security-boot-app-tests-spock</name>
     <url>http://maven.apache.org</url>
 
     <properties>

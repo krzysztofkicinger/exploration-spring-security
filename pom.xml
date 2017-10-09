@@ -19,7 +19,6 @@
 	</parent>
 
 	<modules>
-		<module>spring-security-with-boot</module>
 		<module>spring-security-boot-app</module>
         <module>spring-security-boot-app-tests-spock</module>
         <module>spring-security-boot-app-tests-cucumber</module>

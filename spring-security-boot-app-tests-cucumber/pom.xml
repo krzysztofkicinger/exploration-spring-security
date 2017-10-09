@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-security-boot-app-test-cucumber</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>spring-security-boot-app-tests-cucumber</artifactId>
+    <packaging>pom</packaging>
 
-    <name>spring-security-boot-app-test-cucumber</name>
+    <name>spring-security-boot-app-tests-cucumber</name>
     <url>http://maven.apache.org</url>
 
     <modules>
@@ -67,8 +67,8 @@
             <groupId>com.kicinger.spring</groupId>
             <artifactId>spring-security-boot-app</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
