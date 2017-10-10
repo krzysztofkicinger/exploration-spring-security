@@ -6,7 +6,10 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
+    container_name: spring-security-db
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    ports:
+      - "40000:5432"

@@ -23,7 +23,8 @@
         <module>spring-security-boot-app-tests-spock</module>
         <module>spring-security-boot-app-tests-cucumber</module>
 		<module>spring-security-db</module>
-	</modules>
+        <module>spring-security-boot-app-db</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
