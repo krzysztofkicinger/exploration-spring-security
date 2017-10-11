@@ -23,7 +23,6 @@
         <module>spring-security-boot-app-tests-spock</module>
         <module>spring-security-boot-app-tests-cucumber</module>
 		<module>spring-security-db</module>
-        <module>spring-security-boot-app-db</module>
         <module>spring-security-oauth-authorization-server</module>
         <module>spring-security-oauth-resource-server</module>
         <module>spring-security-oauth-client-app-angular</module>

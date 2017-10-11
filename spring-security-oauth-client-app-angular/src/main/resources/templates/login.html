@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Spring Security OAuth</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-cookies.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
+    <script>
+        const app = angular.module("clientApp", ["ngRoute", "ngResource", "ngCookies"]);
+
+        app.controller("mainController", function($scope, $http, $httpParamSerializer, $cookies) {
+
+            $scope.data = {
+                grant_type: 'password',
+                username: "",
+                password: "",
+                client_id: "passwordClient",     // From the spring-security-oauth-authorization-server configuration
+                foo: {
+                    id: "",
+                    name: ""
+                }
+            };
+
+            $scope.encoded = btoa($scope.data + ":secret");
+
+            $scope.login = function() {
+
+                const tokenRequest = {
+                    method: "POST",
+                    url: "http://localhost:9000/oauth/token",
+                    headers: {
+                        "Authorization": "Basic "  + $scope.encoded,
+                        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+                    },
+                    data: $httpParamSerializer($scope.data)
+                };
+
+                $http(tokenRequest).then(function(data) {
+                    const accessToken = data.data.access_token;
+                    $http.defaults.headers.common.Authorization = "Bearer " + accessToken;
+                    $cookies.put("access_token", accessToken);
+                    window.location.href = "index";
+
+                });
+
+            };
+
+            $scope.getFoo = function() {
+
+            };
+
+            var isLoginPage = window.location.href.indexOf("login") != -1;
+
+            if(isLoginPage) {
+                console.log("Login Page");
+                if($cookies.get("access_token")) {
+                    window.location.href = "index";
+                }
+            } else {
+                if($cookies.get("access_token")) {
+                    $http.defaults.headers.common.Authorization = "Bearer " + $cookies.get("access_token");
+                } else {
+                    console.log("Go to login page");
+                    window.location.href = "login";
+                }
+            }
+
+        });
+    </script>
+</head>
+<body ng-app="clientApp" ng-controller="mainController">
+
+<h1>Login</h1>
+
+<label for="username">Username</label>
+<input id="username" ng-model="data.username" />
+
+<label for="password">Password</label>
+<input id="password" ng-model="data.password" />
+
+<a href="#" ng-click="login()">Login</a>
+
+</body>
+</html>

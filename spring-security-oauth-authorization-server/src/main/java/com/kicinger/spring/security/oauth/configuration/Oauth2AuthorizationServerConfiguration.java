@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
@@ -20,24 +21,25 @@ import javax.sql.DataSource;
 public class Oauth2AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
+    @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    @Qualifier("dataSource")
-    private DataSource dataSource;
+//    @Autowired
+//    @Qualifier("dataSource")
+//    private DataSource dataSource;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("implicitClient")
-                .authorizedGrantTypes("implicit")
-                .scopes("read")
-                .autoApprove("true")
-                .and()
                 .withClient("passwordClient")
                 .secret("secret")
                 .authorizedGrantTypes("authorization_code", "refresh_token", "password")
-                .scopes("read");
+                .scopes("read")
+                .and()
+                .withClient("implicitClient")
+                .authorizedGrantTypes("implicit")
+                .scopes("read")
+                .autoApprove(true);
     }
 
     @Override
@@ -48,15 +50,15 @@ public class Oauth2AuthorizationServerConfiguration extends AuthorizationServerC
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+        oauthServer
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
     }
 
     @Bean
     public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
+        return new InMemoryTokenStore();
     }
 
 }
