@@ -24,6 +24,9 @@
         <module>spring-security-boot-app-tests-cucumber</module>
 		<module>spring-security-db</module>
         <module>spring-security-boot-app-db</module>
+        <module>spring-security-oauth-authorization-server</module>
+        <module>spring-security-oauth-resource-server</module>
+        <module>spring-security-oauth-client-app-angular</module>
     </modules>
 
 	<properties>
@@ -39,28 +42,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven</artifactId>
-				<version>1.3.5</version>
-				<executions>
-					<execution>
-						<id>default</id>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 
 
 </project>
