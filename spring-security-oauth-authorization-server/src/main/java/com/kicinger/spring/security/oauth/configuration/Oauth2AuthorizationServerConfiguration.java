@@ -33,7 +33,7 @@ public class Oauth2AuthorizationServerConfiguration extends AuthorizationServerC
         clients.inMemory()
                 .withClient("passwordClient")
                 .secret("secret")
-                .authorizedGrantTypes("authorization_code", "refresh_token", "password")
+                .authorizedGrantTypes("password", "refresh_token", "authorization_code")
                 .scopes("read")
                 .and()
                 .withClient("implicitClient")
@@ -52,7 +52,7 @@ public class Oauth2AuthorizationServerConfiguration extends AuthorizationServerC
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
         oauthServer
-                .tokenKeyAccess("permitAll()")
+                .tokenKeyAccess("isAuthenticated()")
                 .checkTokenAccess("isAuthenticated()");
     }
 

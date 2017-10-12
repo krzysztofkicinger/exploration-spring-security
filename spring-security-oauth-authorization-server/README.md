@@ -20,6 +20,39 @@ Requests for the tokens are handled by **Spring MVC controller endpoints** and a
 - User Agent is provided only the Authorization Code, no direct access to the access token
 
 
+# IMPORTANT NOTES
+
+## Password flow
+
+**How request should look like?**
+
+POST /oauth/token
+
+Authentication Basic btoa("<client_id>:<client_secret>")
+Content-Type application/x-www-form-urlencoded
+
+grant_type:password
+username:john
+password:123
+client_id:passwordClient
+
+**Important implementation details**
+
+1. When SpringSecurity performs /oauth/token then it uses AuthorizationManager
+2. WebSecurityConfiguration can be implemented in at least two different ways:
+    - **extends GlobalAuthenticationConfigurerAdapter** and overrides **init(AuthenticationManagerBuilder)** 
+    - **extends WebSecurityConfigurerAdapter**
+        - this time we create security web configuration
+        - this configuration is not used by default
+        - we need to inject our AuthenticationManager to the **Oauth2AuthorizationServerConfiguration** using @Qualifier
+        - and then configure endpoint to use it **authenticationManager(authenticationManager)**
+3. 
+
+
+## Authorization Code Flow
+
+- https://stackoverflow.com/questions/33377971/oauth2-spring-security-authorization-code
+
 ## References
 
 - https://stackoverflow.com/questions/36944986/how-do-oauth-authorize-and-oauth-token-interact-in-spring-oauth
