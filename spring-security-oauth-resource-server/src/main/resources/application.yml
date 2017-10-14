@@ -2,4 +2,9 @@ server:
   port: 9001
 spring:
   profiles:
-    active: database-token
+    active: remote-token
+logging:
+  level:
+    org:
+      springframework:
+       web: debug

@@ -14,8 +14,8 @@ import javax.sql.DataSource;
 @Profile("database-token")
 public class DatabaseTokenConfiguration {
 
-    @Autowired
-    @Qualifier("dataSource")
+//    @Autowired
+//    @Qualifier("dataSource")
     private DataSource dataSource;
 
     /*

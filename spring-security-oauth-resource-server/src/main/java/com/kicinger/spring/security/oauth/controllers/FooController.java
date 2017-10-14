@@ -3,6 +3,7 @@ package com.kicinger.spring.security.oauth.controllers;
 import com.kicinger.spring.security.oauth.model.Foo;
 import org.apache.commons.text.RandomStringGenerator;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
