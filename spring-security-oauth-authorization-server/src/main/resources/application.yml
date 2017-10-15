@@ -6,7 +6,10 @@ spring:
     url: jdbc:postgresql://localhost:40000/postgres
     username: postgres
     password: postgres
-logging:
-  level:
-    org:
-      springframework: DEBUG
+  profiles:
+    active: database-configuration
+
+#logging:
+#  level:
+#    org:
+#      springframework: DEBUG

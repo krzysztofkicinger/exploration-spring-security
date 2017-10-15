@@ -48,8 +48,8 @@ app.controller("mainController", function($scope, $http, $httpParamSerializer, $
 
     $scope.getFoo = function() {
         $http.get("http://localhost:9001/foos/123")
-            .then(function(data) {
-                console.log(data);
+            .then(function(response) {
+                $scope.data.foo = response.data;
             })
             .catch(function(error) {
                 console.log(error);

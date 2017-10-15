@@ -21,8 +21,9 @@ public class RemoteTokenConfiguration {
     public RemoteTokenServices tokenStore() {
         RemoteTokenServices tokenService = new RemoteTokenServices();
         tokenService.setCheckTokenEndpointUrl("http://localhost:9000/oauth/check_token");
-        tokenService.setClientId("fooClientIdPassword");
-        tokenService.setClientSecret("secret");
+        tokenService.setTokenName("token");
+        tokenService.setClientId("resourceClient");
+        tokenService.setClientSecret("resourceSecret");
         return tokenService;
     }
 
