@@ -3,11 +3,11 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:40000/postgres
+    url: jdbc:postgresql://192.168.99.100:40000/postgres
     username: postgres
     password: postgres
   profiles:
-    active: database-configuration
+    active: jwt-configuration
 
 #logging:
 #  level:

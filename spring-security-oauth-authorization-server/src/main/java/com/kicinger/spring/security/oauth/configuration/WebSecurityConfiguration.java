@@ -27,8 +27,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder());
+                .dataSource(dataSource);
+//                .passwordEncoder(passwordEncoder());
 //                .withUser("john")
 //                .password("123")
 //                .roles("USER");
@@ -38,6 +38,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .withUser("john")
 //                .password("123")
 //                .roles("USER");
+        ;
     }
 
     @Bean
@@ -55,9 +56,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin().permitAll(); // Login form configuration is required for the implicit flow not for password flow
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
 }
